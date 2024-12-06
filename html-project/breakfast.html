@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>早餐選擇</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav-container">
+        <button class="nav-button" onclick="NavMenu()">☰</button>
+        <div id="nav-menu" class="nav-menu">
+            <a href="#">歷史紀錄</a>
+            <a href="#">設定</a>
+            <a href="./index.html">回主頁</a>
+        </div>
+    </div>
+
+    <h1>早餐選擇</h1>
+    <h2>餐點類別</h2>
+    <div>
+        <label><input type="checkbox" id="main" value="main"> 主餐</label>
+        <label><input type="checkbox" id="snack" value="snack"> 點心</label>
+        <label><input type="checkbox" id="drink" value="drink"> 飲料</label>
+        <br>
+        
+    </div>
+
+    <div id="placeholders" class="stage">
+        <!-- 餐點顯示區域 -->
+    </div>
+
+    <button onclick="RandomChoices()">我來決定!</button>
+
+    <script>
+        function NavMenu() {
+            const navMenu = document.getElementById("nav-menu");
+            if (navMenu.style.display === "none" || navMenu.style.display === "") {
+                navMenu.style.display = "flex";
+            } 
+            else {
+                navMenu.style.display = "none";
+            }
+        }
+
+        function RandomChoices() {
+            const placeholders = document.getElementById("placeholders");
+            placeholders.innerHTML = ''; 
+
+            const selectedTypes = [];
+            if (document.getElementById("main").checked) selectedTypes.push("main");
+            if (document.getElementById("snack").checked) selectedTypes.push("snack");
+            if (document.getElementById("drink").checked) selectedTypes.push("drink");
+
+            if (selectedTypes.length === 0) {
+                alert("請至少選擇一種類別！");
+                return;
+            }
+
+            fetch("./breakfast.json")
+                .then(response => response.json())
+                .then(data => {
+                    selectedTypes.forEach(type => {
+                        const items = data[type];
+                        const randomItem = items[Math.floor(Math.random() * items.length)];
+
+                        const itemDiv = document.createElement("div");
+                        itemDiv.className = "placeholder";
+
+                        // 生成圖片元素
+                        const img = document.createElement("img");
+                        img.src = randomItem.image;
+                        img.alt = randomItem.name;
+                        img.style.width = "150px"; // 設定圖片大小
+                        img.style.height = "150px";
+                        itemDiv.appendChild(img);
+
+                        //生成文字說明
+                        const description = document.createElement("p");
+                        description.textContent = randomItem.name;
+                        description.style.textAlign = "center"; 
+                        itemDiv.appendChild(description);
+
+                
+                        placeholders.appendChild(itemDiv);
+                    });
+                })
+                .catch(error => console.error("Error loading JSON:", error));
+        }
+
+    </script>
+</body>
+</html>
