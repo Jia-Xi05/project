@@ -91,3 +91,20 @@ button {
 button:hover {
     background-color: #A0522D; 
 }
+
+input[type="checkbox"] {
+    transform: scale(1.5); 
+    margin-right: 10px; 
+}
+
+label {
+    font-size: 18px; 
+    margin-right: 20px; 
+}
+
+
+@media (max-width: 768px) {
+    .stage .placeholder {
+       display: flex;
+    }
+}
