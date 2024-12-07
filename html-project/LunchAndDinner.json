@@ -1,0 +1,49 @@
+{
+    "main": [
+        { "name": "麻辣鍋", "image": "https://th.bing.com/th/id/OIP.anVskvgw3Mf94kMlbrEFYQHaFE?rs=1&pid=ImgDetMain" },
+        { "name": "生魚片丼飯", "image": "https://taiwantour.info/wp-content/uploads/2020/02/1582442612-8d67da1773ae53d2f678dfcfd65b8ba4.jpg" },
+        { "name": "綠咖哩", "image": "https://th.bing.com/th/id/R.7b6e1a9909695d950cad2b4891893039?rik=aKuu5kDWRX1vOA&pid=ImgRaw&r=0" },
+        { "name": "炒飯", "image": "https://research.image.itmedia.co.jp/wp-content/uploads/2023/06/1686794023_66565347.jpg" },
+        { "name": "炒麵", "image": "https://th.bing.com/th/id/R.967c926fa7225d6eb1bf95a0bb75e459?rik=XSViva9q2Bxokg&pid=ImgRaw&r=0" },
+        { "name": "鍋燒意麵", "image": "https://whityeat.com/wp-content/uploads/20210606035533_13.jpg" },
+        { "name": "水餃", "image": "https://s.yimg.com/zp/images/E084C7817B357A35CFB300750851BB695B5E411B" },
+        { "name": "蛋包飯", "image": "https://d3l76hx23vw40a.cloudfront.net/recipe/yqn32-030.jpg" },
+        { "name": "拉麵", "image": "https://static.gltjp.com/glt/prd/data/article/12000/11214/20170102_175240_4685a905_w1920.jpg" },
+        { "name": "燒臘飯", "image": "https://th.bing.com/th/id/OIP.7vs2pnCY5JE1r9I4oxUolQHaFj?rs=1&pid=ImgDetMain" },
+        { "name": "壽司", "image": "https://th.bing.com/th/id/OIP.bYVWY9xZzRRj5FTw5G8xpwHaGd?rs=1&pid=ImgDetMain" },
+        { "name": "牛肉麵", "image": "https://tokyo-kitchen.icook.network/uploads/recipe/cover/338564/8869cd181686929d.jpg" },
+        { "name": "滷肉飯", "image": "https://i0.wp.com/zezecook.com/wp-content/uploads/DSC_0455-e1534772757401.jpg?fit=1200%2C797" },
+        { "name": "雞肉飯", "image": "https://th.bing.com/th/id/OIP.gKfbFKYnWSa0kX72NJG1GgHaD4?rs=1&pid=ImgDetMain" },
+        { "name": "海鮮粥", "image": "https://img.ltn.com.tw/Upload/food/page/2023/06/19/230619-12191-0-BageR.jpg" },
+        { "name": "麥當勞", "image": "https://img.ltn.com.tw/Upload/business/page/800/2016/11/09/55.jpg" },
+        { "name": "雞腿便當", "image": "https://th.bing.com/th/id/OIP.VgUFd5Bw3xPJscpqlUtsTQHaFa?rs=1&pid=ImgDetMain" },
+        { "name": "奶油牡蠣燉飯", "image": "https://d3l76hx23vw40a.cloudfront.net/movie/m887.jpg" },
+        { "name": "酸菜魚", "image": "https://th.bing.com/th/id/R.eaadd02c384c81b0b809ada3aa97763a?rik=TfpPPcDrJuo4HA&pid=ImgRaw&r=0" },
+        { "name": "咖哩飯", "image": "https://daynauan.info.vn/wp-content/uploads/2015/10/ca-ri-ga-kieu-nhat.jpg" }
+        
+    ],
+    "snack": [
+        { "name": "地瓜球", "image": "https://th.bing.com/th/id/OIP.ETguYLy7jOctTyKNXIjxqwHaE8?rs=1&pid=ImgDetMain" },
+        { "name": "豆花", "image": "https://th.bing.com/th/id/OIP.p4mzUiAmUHWC0aD7tiWtcQHaE8?w=640&h=427&rs=1&pid=ImgDetMain" },
+        { "name": "馬芬蛋糕", "image": "https://i.pinimg.com/originals/b2/c5/77/b2c5770ade5424b62a24a916192f98f8.jpg" },
+        { "name": "檸檬蛋糕", "image": "https://tokyo-kitchen.icook.network/uploads/recipe/cover/107262/large_3f909311eabdc82a.jpg" },
+        { "name": "芋頭酥", "image": "https://th.bing.com/th/id/OIP.P2aSiO8_2nqJuhz7x1JrmAHaEk?rs=1&pid=ImgDetMain" },
+        { "name": "千層派", "image": "https://tokyo-kitchen.icook.network/uploads/recipe/cover/40009/large_39dd60170715e957.jpg" },
+        { "name": "綠豆糕", "image": "https://th.bing.com/th/id/R.f646cd104020970b99bafbd872b7d571?rik=6W%2fk3DOp%2bO5cQQ&pid=ImgRaw&r=0" },
+        { "name": "巧克力布朗尼", "image": "https://img95.699pic.com/photo/30769/5147.jpg_wh860.jpg" },
+        { "name": "生乳捲", "image": "https://api.hsrwg.com/images/P282/%E5%8E%9F%E5%91%B3%E7%94%9F%E4%B9%B3%E6%8D%B22020400.jpg" },
+        { "name": "蜂蜜蛋糕","image": "https://th.bing.com/th/id/OIP.ARTwb3GjZs-aViNOZ2lLbwHaE8?rs=1&pid=ImgDetMain"}
+    ],
+    "drink": [
+        { "name": "綠茶", "image": "https://beauty-upgrade.tw/wp-content/uploads/2019/04/shutterstock_265400270.jpg" },
+        { "name": "紅茶", "image": "https://conekuriya.com/files/uploads/teacup.jpg" },
+        { "name": "紅茶拿鐵", "image": "https://s3-ap-northeast-1.amazonaws.com/12cm-tw-o2o/echoss/product/-999-0/pool/vOE20zOczR10-Kr_1667200664.jpeg" },
+        { "name": "咖啡", "image": "https://th.bing.com/th/id/R.d3e0603de2bfc9b811df55820c7a1a32?rik=DUR1qa4femur6w&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50073%2f8464.jpg_wh1200.jpg&ehk=El%2fvrDPlNonn%2f7EQsDx2tDZHuHQsYwfvUX5cv7ifjU0%3d&risl=&pid=ImgRaw&r=0" },
+        { "name": "珍珠奶茶", "image": "https://th.bing.com/th/id/OIP.CSmrLkWFuqs3djZ1-C9DEwHaDW?rs=1&pid=ImgDetMain" },
+        { "name": "百香綠茶", "image": "https://th.bing.com/th/id/R.3822de0ea8a73189594b039f3d1cca46?rik=UojNQlAiSbeI2A&riu=http%3a%2f%2fgardenstreet.com.cn%2fupload%2f2019-09%2f09%2f531huayuanjie6hao420.jpg&ehk=6zo%2byzaf1mLxrCS8PTgwtdKLko8AjL%2fvslPWAnkbH4o%3d&risl=&pid=ImgRaw&r=0" },
+        { "name": "阿華田", "image": "https://th.bing.com/th/id/OIP.Gy6oCoPlxYU9_qH1DyBzcwAAAA?rs=1&pid=ImgDetMain" },
+        { "name": "多多綠", "image": "https://obs.line-scdn.net/0hfQ6Pwi3EOX4LKSvjf0ZGKTN_NQ84TyN3KRt1Ty8rMBknBXovMUhqHXkhNVJ2GCx6K0l2Gi97YB10EH0uYw/w1200" },
+        { "name": "冬瓜檸檬", "image": "https://im01.itaiwantrade.com/7d3d6a21-f5b1-407d-b217-b18b8bd49044/%E5%86%AC%E7%93%9C%E6%AA%B8%E6%AA%AC(W480xH480)-480x480.jpg" },
+        { "name": "梅子綠茶", "image": "https://th.bing.com/th/id/OIP.Jt7pSh8hfV-N6Gpp0AcWUwHaEw?rs=1&pid=ImgDetMain" }
+    ]
+}
