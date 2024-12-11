@@ -19,8 +19,7 @@
         { "name": "雞腿便當", "image": "https://th.bing.com/th/id/OIP.VgUFd5Bw3xPJscpqlUtsTQHaFa?rs=1&pid=ImgDetMain" },
         { "name": "奶油牡蠣燉飯", "image": "https://d3l76hx23vw40a.cloudfront.net/movie/m887.jpg" },
         { "name": "酸菜魚", "image": "https://th.bing.com/th/id/R.eaadd02c384c81b0b809ada3aa97763a?rik=TfpPPcDrJuo4HA&pid=ImgRaw&r=0" },
-        { "name": "咖哩飯", "image": "https://daynauan.info.vn/wp-content/uploads/2015/10/ca-ri-ga-kieu-nhat.jpg" }
-        
+        { "name": "咖哩飯", "image": "https://daynauan.info.vn/wp-content/uploads/2015/10/ca-ri-ga-kieu-nhat.jpg" }  
     ],
     "snack": [
         { "name": "地瓜球", "image": "https://th.bing.com/th/id/OIP.ETguYLy7jOctTyKNXIjxqwHaE8?rs=1&pid=ImgDetMain" },
