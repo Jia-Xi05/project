@@ -40,6 +40,15 @@
         .clear-button:hover {
             background-color: #d32f2f;
         }
+
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -112,10 +121,18 @@
                 // 餐點欄
                 const itemsCell = document.createElement("td");
                 if (Array.isArray(record.items)) {
-                    const itemsText = record.items.map(item => item.name || "unknown").join(", ");
-                    itemsCell.textContent = itemsText; 
-                } 
-                else {
+                    record.items.forEach(item => {
+                        const itemName = item.name || "unknown";
+                        const link = document.createElement("a");
+                        link.href = "#";
+                        link.textContent = itemName;
+                        link.style.marginRight = "10px"; // 增加間距
+                        link.addEventListener('click', function() {
+                            openMapWithLocation(itemName); // 點擊時開啟地圖
+                        });
+                        itemsCell.appendChild(link);
+                    });
+                } else {
                     itemsCell.textContent = "unknown";
                 }
 
@@ -124,11 +141,30 @@
             });
         }
 
+        // 開啟 Google Maps 並顯示使用者位置周圍的餐點
+        function openMapWithLocation(itemName) {
+            // 確認使用者是否允許定位
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const userLatitude = position.coords.latitude;
+                    const userLongitude = position.coords.longitude;
+
+                    // 使用 Google Maps 進行搜尋，並傳入使用者的緯度和經度
+                    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(itemName)}&location=${userLatitude},${userLongitude}`;
+                    window.open(mapUrl, '_blank');
+                }, function() {
+                    alert("無法取得您的位置");
+                });
+            } else {
+                alert("您的瀏覽器不支持地理定位功能");
+            }
+        }
+
         // 清空歷史紀錄
         function clearHistory() {
             if (confirm("真的嗎？")) {
-                if(confirm("確定嗎？")){
-                    if(confirm("紀錄會不見噢？")){
+                if (confirm("確定嗎？")) {
+                    if (confirm("紀錄會不見噢？")) {
                         localStorage.removeItem("history"); 
                         loadHistory(); 
                     }
