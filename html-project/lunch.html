@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>午餐選擇</title>
+    <title>Lunch</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,8 +18,12 @@
         </div>
     </div>
 
-    <h1>午餐選擇</h1>
+    <br>
+    <br>
+    <h1>午餐拉霸</h1>
+    <br><br><br>
     <h2>餐點類別</h2>
+    <br>
     <div>
         <label><input type="checkbox" id="main" value="main"> 主餐</label>
         <label><input type="checkbox" id="snack" value="snack"> 點心</label>
@@ -27,97 +31,135 @@
         <br>
         
     </div>
-
+    
     <div id="placeholders" class="stage">
         <!-- 餐點顯示區域 -->
     </div>
 
-    <button onclick="RandomChoices()">我來決定!</button>
+    <button onclick="RandomChoices()">隨便啦!</button>
     <br>
     <button id="eat-button" style="display:none;" onclick="SaveToHistory()">吃！</button>
 
+    <audio id="roll-music" src="./music_6s.mp3"></audio>
 
     <script>
-        let selectedItems = []; // 儲存當前生成的餐點
-
-        function NavMenu() {
-            const navMenu = document.getElementById("nav-menu");
-            if (navMenu.style.display === "none" || navMenu.style.display === "") {
-                navMenu.style.display = "flex";
-            } else {
-                navMenu.style.display = "none";
-            }
+      let selectedItems = []; // 儲存當前生成的餐點
+      let rollingIntervals = []; // 用於存放 setInterval 的 id
+    
+      function NavMenu() {
+        const navMenu = document.getElementById("nav-menu");
+        navMenu.style.display =
+          navMenu.style.display === "none" || navMenu.style.display === ""
+            ? "flex"
+            : "none";
+      }
+    
+      function RandomChoices() {
+        const placeholders = document.getElementById("placeholders");
+        placeholders.innerHTML = "";
+        selectedItems = [];
+        rollingIntervals.forEach(clearInterval); // 清除所有滾動動畫
+        rollingIntervals = [];
+    
+        document.getElementById("eat-button").style.display = "none"; // 初始隱藏
+    
+        const selectedTypes = [];
+        if (document.getElementById("main").checked) selectedTypes.push("main");
+        if (document.getElementById("snack").checked) selectedTypes.push("snack");
+        if (document.getElementById("drink").checked) selectedTypes.push("drink");
+    
+        if (selectedTypes.length === 0) {
+          alert("不吃進來幹嘛！");
+          return;
         }
-
-        function RandomChoices() {
-            const placeholders = document.getElementById("placeholders");
-            placeholders.innerHTML = ''; 
-            selectedItems = []; 
-            
-            document.getElementById("eat-button").style.display = "none"; // 初始隱藏
-
-            const selectedTypes = [];
-            if (document.getElementById("main").checked) selectedTypes.push("main");
-            if (document.getElementById("snack").checked) selectedTypes.push("snack");
-            if (document.getElementById("drink").checked) selectedTypes.push("drink");
-
-            if (selectedTypes.length === 0) {
-                alert("請至少選擇一種類別！");
-                return;
-            }
-
-            fetch("./LunchAndDinner.json")
-                .then(response => response.json())
-                .then(data => {
-                    selectedTypes.forEach(type => {
-                        const items = data[type];
-                        const randomItem = items[Math.floor(Math.random() * items.length)];
-
-                        const itemDiv = document.createElement("div");
-                        itemDiv.className = "placeholder";
-
-                        // 生成圖片元素
-                        const img = document.createElement("img");
-                        img.src = randomItem.image;
-                        img.alt = randomItem.name;
-                        img.style.width = "150px"; 
-                        img.style.height = "150px";
-                        itemDiv.appendChild(img);
-
-                        // 生成文字說明
-                        const description = document.createElement("p");
-                        description.textContent = randomItem.name;
-                        description.style.textAlign = "center";
-                        itemDiv.appendChild(description);
-
-                        placeholders.appendChild(itemDiv);
-
-                        // 將選擇的項目加入陣列
-                        selectedItems.push({
-                            name: randomItem.name,
-                            image: randomItem.image
-                        });
-                    });
-
-                    // 顯示「吃」按鈕
-                    if (selectedItems.length > 0) {
-                        document.getElementById("eat-button").style.display = "block";
-                    }
-                })
-                .catch(error => console.error("Error loading JSON:", error));
-        }
-
-        function SaveToHistory() {
-            const history = JSON.parse(localStorage.getItem("history")) || [];
-            history.push({
-                time: new Date().toLocaleString(),
-                category: "Lunch",
-                items: selectedItems // 將一次選擇存為陣列
+    
+        // 播放音樂
+        const rollMusic = document.getElementById("roll-music");
+        rollMusic.currentTime = 0; // 將音樂設定為從頭播放
+        rollMusic.play();
+    
+        fetch("./LunchAndDinner.json")
+          .then((response) => response.json())
+          .then((data) => {
+            let startDelay = 0; // 開始滾動的延遲時間
+    
+            selectedTypes.forEach((type, index) => {
+              setTimeout(() => {
+                const items = data[type];
+                const randomItemIndex = Math.floor(Math.random() * items.length);
+    
+                const itemDiv = document.createElement("div");
+                itemDiv.className = "placeholder";
+                itemDiv.style.textAlign = "center";
+    
+                // 建立圖片元素
+                const img = document.createElement("img");
+                img.style.width = "150px";
+                img.style.height = "150px";
+                itemDiv.appendChild(img);
+    
+                // 建立文字描述
+                const description = document.createElement("p");
+                itemDiv.appendChild(description);
+    
+                placeholders.appendChild(itemDiv);
+    
+                // 開始滾動動畫
+                let currentIndex = 0;
+                const intervalId = setInterval(() => {
+                  const currentItem = items[currentIndex];
+                  img.src = currentItem.image;
+                  img.alt = currentItem.name;
+                  description.textContent = currentItem.name;
+                  currentIndex = (currentIndex + 1) % items.length;
+                }, 100); // 每 100ms 更新一次
+    
+                rollingIntervals.push(intervalId);
+    
+                // 在 3 秒後停止動畫並顯示最終結果
+                setTimeout(() => {
+                  clearInterval(intervalId);
+                  const finalItem = items[randomItemIndex];
+                  img.src = finalItem.image;
+                  img.alt = finalItem.name;
+                  description.textContent = finalItem.name;
+    
+                  selectedItems.push({
+                    name: finalItem.name,
+                    image: finalItem.image,
+                  });
+    
+                  // 如果所有類別都已停止，顯示「吃」按鈕
+                  if (selectedItems.length === selectedTypes.length) {
+                    document.getElementById("eat-button").style.display = "block";
+                  }
+                }, 3000); // 每個類別動畫停在 3 秒
+              }, startDelay); // 延遲開始
+    
+              startDelay += 1000; // 每次延遲 1 秒
             });
-            localStorage.setItem("history", JSON.stringify(history));
-
-            alert("完成紀錄！可以到歷史紀錄查看。");
-        }
+    
+            // 停止音樂
+            setTimeout(() => {
+              rollMusic.pause();
+              rollMusic.currentTime = 0; // 重設播放時間
+            }, 3000 + (selectedTypes.length - 1) * 1000); // 確保音樂與最後一個動畫結束同步
+          })
+          .catch((error) => console.error("Error loading JSON:", error));
+      }
+    
+      function SaveToHistory() {
+        const history = JSON.parse(localStorage.getItem("history")) || [];
+        history.push({
+          time: new Date().toLocaleString(),
+          category: "Dinner",
+          items: selectedItems, // 將一次選擇存為陣列
+        });
+        localStorage.setItem("history", JSON.stringify(history));
+    
+        alert("完成紀錄！可以到歷史紀錄查看。");
+      }
     </script>
+    
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,8 @@
             margin: 20px auto;
             border-collapse: collapse;
             width: 90%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
         th, td {
             border: 1px solid #ccc;
@@ -35,10 +37,13 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transform: scale(1);
+            transition: transform 0.2s ease-in-out;
         }
 
         .clear-button:hover {
             background-color: #d32f2f;
+            transform: scale(1.1);
         }
 
         a {
@@ -48,6 +53,30 @@
 
         a:hover {
             text-decoration: none;
+        }
+
+        /* 表格行過渡動畫 */
+        tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* 引導式動畫 */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -68,7 +97,7 @@
     <!-- 清空紀錄按鈕 -->
     <button class="clear-button" onclick="clearHistory()">清空紀錄</button>
 
-    <table id="history-table">
+    <table id="history-table" class="fade-in">
         <thead>
             <tr>
                 <th>時間</th>
@@ -105,7 +134,7 @@
             }
 
             // 顯示每筆歷史紀錄
-            history.forEach(record => {
+            history.forEach((record, index) => {
                 const row = document.createElement("tr");
 
                 // 時間欄
@@ -138,6 +167,11 @@
 
                 row.appendChild(itemsCell);
                 historyTable.appendChild(row);
+
+                // 延遲顯示每一行的動畫效果
+                setTimeout(() => {
+                    row.style.opacity = 1;
+                }, index * 100);
             });
         }
 
