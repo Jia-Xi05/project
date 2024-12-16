@@ -37,10 +37,8 @@
     </div>
 
     <button onclick="RandomChoices()">隨便啦!</button>
-    <br>
     <button id="eat-button" style="display:none;" onclick="SaveToHistory()">吃！</button>
 
-    <audio id="roll-music" src="./music_6s.mp3"></audio>
 
     <script>
       let selectedItems = []; // 儲存當前生成的餐點
@@ -73,10 +71,7 @@
           return;
         }
     
-        // 播放音樂
-        const rollMusic = document.getElementById("roll-music");
-        rollMusic.currentTime = 0; // 將音樂設定為從頭播放
-        rollMusic.play();
+      
     
         fetch("./LunchAndDinner.json")
           .then((response) => response.json())
@@ -139,11 +134,7 @@
               startDelay += 1000; // 每次延遲 1 秒
             });
     
-            // 停止音樂
-            setTimeout(() => {
-              rollMusic.pause();
-              rollMusic.currentTime = 0; // 重設播放時間
-            }, 3000 + (selectedTypes.length - 1) * 1000); // 確保音樂與最後一個動畫結束同步
+            
           })
           .catch((error) => console.error("Error loading JSON:", error));
       }
