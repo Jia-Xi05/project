@@ -143,7 +143,7 @@
         const history = JSON.parse(localStorage.getItem("history")) || [];
         history.push({
           time: new Date().toLocaleString(),
-          category: "Dinner",
+          category: "Lunch",
           items: selectedItems, // 將一次選擇存為陣列
         });
         localStorage.setItem("history", JSON.stringify(history));
