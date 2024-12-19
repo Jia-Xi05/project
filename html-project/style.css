@@ -2,35 +2,35 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* 改為頂部對齊，避免內容向中間堆疊 */
+    justify-content: flex-start; 
     min-height: 100vh;
     background-color: #fef7f0;
     background-image: linear-gradient(to bottom, #f3d8c7, #e8c2ae);
     color: #5a4631;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    padding: 20px; /* 增加內邊距避免內容緊貼邊緣 */
+    padding: 20px; 
     margin: 0;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
 }
 
 .placeholder {
-    width: 180px; /* 稍微增加寬度，提升視覺效果 */
+    width: 180px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
     text-align: center;
-    background: #fff; /* 新增背景色，讓卡片更清晰 */
+    background: #fff; 
     border: 1px solid #D2B48C;
     border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 增加陰影效果 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
     padding: 10px;
-    transition: transform 0.2s ease-in-out; /* 增加懸浮效果的動畫 */
+    transition: transform 0.2s ease-in-out;
 }
 
 .placeholder:hover {
-    transform: scale(1.05); /* 懸浮時略微放大 */
+    transform: scale(1.05); 
 }
 
 .placeholder img {
@@ -49,13 +49,13 @@ body {
 }
 
 h1 {
-    font-size: 3.5em; /* 調小字體大小，避免占用過多空間 */
+    font-size: 3.5em; 
     color: #8B4513;
-    margin: 10px 0; /* 縮小標題上下間距 */
+    margin: 10px 0; 
 }
 
 .nav-container {
-    position: fixed; /* 固定導航列，方便使用 */
+    position: fixed; 
     top: 10px;
     left: 10px;
     z-index: 1000;
@@ -96,8 +96,8 @@ h1 {
     padding: 5px 10px;
     text-decoration: none;
     font-size: 1em;
-    color: #5a4631; /* 深棕色字體 */
-    border-bottom: 1px solid #f3d8c7; /* 增加間隔感 */
+    color: #5a4631; 
+    border-bottom: 1px solid #f3d8c7; 
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .nav-menu a:last-child {
@@ -106,8 +106,8 @@ h1 {
 
 
 .nav-menu a:hover {
-    background-color: #f3d8c7; /* 橘色背景 */
-    color: #fff; /* 白色文字，與背景對比 */
+    background-color: #f3d8c7; 
+    color: #fff; 
 }
 
 button {
@@ -118,7 +118,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 10px 5px; /* 增加按鈕間距 */
+    margin: 10px 5px; 
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -127,7 +127,7 @@ button:hover {
 }
 
 input[type="checkbox"] {
-    transform: scale(2); /* 微調大小，適配多種設備 */
+    transform: scale(2); 
     margin-right: 10px;
 }
 
@@ -137,22 +137,22 @@ label {
     display: inline-block;
 }
 
-/* 調整舞台布局 */
+
 #placeholders {
-    display: flex; /* 改為彈性佈局 */
-    flex-wrap: wrap; /* 讓內容換行顯示 */
-    justify-content: center; /* 水平置中 */
-    align-items: center; /* 垂直置中 */
-    gap: 20px; /* 區塊之間的間距 */
-    width: 100%; /* 撐滿可用空間 */
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center;
+    gap: 20px; 
+    width: 100%; 
     margin: 20px 0;
 }
 
 
-/* 媒體查詢：針對小螢幕設備優化 */
+
 @media (max-width: 768px) {
     body {
-        padding: 10px; /* 小螢幕縮小外邊距 */
+        padding: 10px; 
     }
 
     h1 {
@@ -177,4 +177,31 @@ label {
         padding: 8px 15px;
         font-size: 14px;
     }
+
 }
+
+/* 加載動畫樣式 */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid;
+    border-color: #000 #0000;
+    animation: l1 1s infinite;
+    z-index: 9999;
+    position: absolute;
+  }
+  @keyframes l1 {to{transform: rotate(.5turn)}}
+
+/* 頁面背景遮罩 */
+#page-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); 
+    z-index: 9998; 
+    display: none;
+}
+

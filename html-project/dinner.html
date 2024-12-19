@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dinner</title>
     <link rel="stylesheet" href="style.css" />
+
 </head>
 <body>
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+
     <div class="nav-container">
         <button class="nav-button" onclick="NavMenu()">☰</button>
         <div id="nav-menu" class="nav-menu">
@@ -40,8 +45,11 @@
       吃！
     </button>
 
+    <div id="page-loader" class="loader" style="display: none;"></div>
+    <div id="page-loader-overlay" style="display: none;"></div>
 
     <script>
+
       let selectedItems = []; // 儲存當前生成的餐點
       let rollingIntervals = []; // 用於存放 setInterval 的 id
     
@@ -128,10 +136,10 @@
                   if (selectedItems.length === selectedTypes.length) {
                     document.getElementById("eat-button").style.display = "block";
                   }
-                }, 3000); // 每個類別動畫停在 3 秒
-              }, startDelay); // 延遲開始
+                }, 3000); 
+              }, startDelay); 
     
-              startDelay += 1000; // 每次延遲 1 秒
+              startDelay += 1000; 
             });
     
           })
@@ -149,6 +157,41 @@
     
         alert("完成紀錄！可以到歷史紀錄查看。");
       }
+      document.addEventListener('DOMContentLoaded', () => {
+        initializeNavLinks();
+      });
+
+      function initializeNavLinks() {
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetUrl = link.href;
+                showLoader(() => {
+                    window.location.href = targetUrl;
+                });
+            });
+        });
+      }
+
+      function showLoader(callback) {
+        const loader = document.getElementById('page-loader');
+        const overlay = document.createElement('div');
+        overlay.id = 'page-loader-overlay';
+        document.body.appendChild(overlay);
+
+        loader.style.display = 'block';
+        overlay.style.display = 'block';
+
+        setTimeout(() => {
+            callback();
+          }, 1500);
+      }
+
     </script>
+
+    
+    
   </body>
 </html>
+

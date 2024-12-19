@@ -85,9 +85,64 @@
                 font-size: 2.2em;
             }
         }
+
+        /* 加載動畫樣式 */
+        .loader-new {
+            width: 65px;
+            aspect-ratio: 1;
+            position: absolute;
+        }
+        .loader-new:before,
+        .loader-new:after {
+            color: #151515;
+            content: "";
+            position: absolute;
+            border-radius: 50px;
+            box-shadow: 0 0 0 3px inset #151515;
+            animation: l4 2.5s infinite;
+        }
+        .loader-new:after {
+            animation-delay: -1.25s;
+        }
+
+        @keyframes l4 {
+            0% {
+                inset: 0 35px 35px 0;
+            }
+            12.5% {
+                inset: 0 35px 0 0;
+            }
+            25% {
+                inset: 35px 35px 0 0;
+            }
+            37.5% {
+                inset: 35px 0 0 0;
+            }
+            50% {
+                inset: 35px 0 0 35px;
+            }
+            62.5% {
+                inset: 0 0 0 35px;
+            }
+            75% {
+                inset: 0 0 35px 35px;
+            }
+            87.5% {
+                inset: 0 0 35px 0;
+            }
+            100% {
+                inset: 0 35px 35px 0;
+            }
+        }
+
     </style>
 </head>
 <body>
+
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+    
     <div class="nav-container">
         <button class="nav-button" onclick="NavMenu()">☰</button>
         <div id="nav-menu" class="nav-menu">
@@ -126,9 +181,15 @@
         <p>&copy; 1131 Random Meal Selection | 網頁程式設計專案 </p>
     </footer>
 
+    <div id="page-loader" class="loader-new" style="display: none;"></div>
+    <div id="page-loader-overlay" style="display: none;"></div>
+
     <script>
+
         function chooseCategory(category) {
-            window.location.href = category;
+            showLoader(() => {
+                window.location.href = category;
+            });
         }
 
         function NavMenu() {
@@ -140,6 +201,40 @@
                 navMenu.style.display = 'flex';
             }
         }
+        document.addEventListener('DOMContentLoaded', () => {
+        initializeNavLinks();
+        });
+
+        document.addEventListener("DOMContentLoaded", loadHistory);
+        function initializeNavLinks() {
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetUrl = link.href;
+                showLoader(() => {
+                    window.location.href = targetUrl;
+                });
+            });
+        });
+      }
+
+      function showLoader(callback) {
+        const loader = document.getElementById('page-loader');
+        const overlay = document.createElement('div');
+        overlay.id = 'page-loader-overlay';
+        document.body.appendChild(overlay);
+
+        loader.classList.remove('loader'); // 移除舊有 loader
+        loader.classList.add('loader-new'); // 添加新的 loader class
+
+        loader.style.display = 'block';
+        overlay.style.display = 'block';
+
+        setTimeout(() => {
+            callback();
+          }, 1500);
+      }
     </script>
 </body>
 </html>
