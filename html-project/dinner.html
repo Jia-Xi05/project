@@ -62,93 +62,124 @@
       }
     
       function RandomChoices() {
-          const placeholders = document.getElementById("placeholders");
-          placeholders.innerHTML = "";
-          selectedItems = [];
-          rollingIntervals.forEach(clearInterval); // 清除所有滾動動畫
-          rollingIntervals = [];
+            const placeholders = document.getElementById("placeholders");
+            placeholders.innerHTML = "";
+            selectedItems = [];
+            totalCalories = 0;
+            totalCarbs = 0;
 
-          const randomButton = document.querySelector('button[onclick="RandomChoices()"]');
-          randomButton.disabled = true; // 禁用按鈕
+            rollingIntervals.forEach(clearInterval); // 清除所有滾動動畫
+            rollingIntervals = [];
 
-          document.getElementById("eat-button").style.display = "none"; //初始隱藏
+            const randomButton = document.querySelector('button[onclick="RandomChoices()"]');
+            randomButton.disabled = true; // 禁用按鈕
 
-          const selectedTypes = [];
-          if (document.getElementById("main").checked) selectedTypes.push("main");
-          if (document.getElementById("snack").checked) selectedTypes.push("snack");
-          if (document.getElementById("drink").checked) selectedTypes.push("drink");
+            document.getElementById("eat-button").style.display = "none"; //初始隱藏
 
-          if (selectedTypes.length === 0) {
-              alert("不吃進來幹嘛！");
-              randomButton.disabled = false; 
-              return;
-          }
+            const selectedTypes = [];
+            if (document.getElementById("main").checked) selectedTypes.push("main");
+            if (document.getElementById("snack").checked) selectedTypes.push("snack");
+            if (document.getElementById("drink").checked) selectedTypes.push("drink");
 
-          fetch("./LunchAndDinner.json")
-              .then((response) => response.json())
-              .then((data) => {
-                  let startDelay = 0;
+            if (selectedTypes.length === 0) {
+                alert("不吃進來幹嘛！");
+                randomButton.disabled = false;
+                return;
+            }
 
-                  selectedTypes.forEach((type, index) => {
-                      setTimeout(() => {
-                          const items = data[type];
-                          const randomItemIndex = Math.floor(Math.random() * items.length);
+            fetch("./LunchAndDinner.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    let startDelay = 0;
 
-                          const itemDiv = document.createElement("div");
-                          itemDiv.className = "placeholder";
-                          itemDiv.style.textAlign = "center";
+                    selectedTypes.forEach((type, index) => {
+                        setTimeout(() => {
+                            const items = data[type];
+                            const randomItemIndex = Math.floor(Math.random() * items.length);
 
-                        
-                          const img = document.createElement("img");
-                          img.style.width = "150px";
-                          img.style.height = "150px";
-                          itemDiv.appendChild(img);
+                            const itemDiv = document.createElement("div");
+                            itemDiv.className = "placeholder";
+                            itemDiv.style.textAlign = "center";
 
-                          const description = document.createElement("p");
-                          itemDiv.appendChild(description);
+                            const img = document.createElement("img");
+                            img.style.width = "150px";
+                            img.style.height = "150px";
+                            itemDiv.appendChild(img);
 
-                          placeholders.appendChild(itemDiv);
+                            const description = document.createElement("p");
+                            itemDiv.appendChild(description);
 
-                          let currentIndex = 0;
-                          const intervalId = setInterval(() => {
-                              const currentItem = items[currentIndex];
-                              img.src = currentItem.image;
-                              img.alt = currentItem.name;
-                              description.textContent = currentItem.name;
-                              currentIndex = (currentIndex + 1) % items.length;
-                          }, 100); 
+                            placeholders.appendChild(itemDiv);
 
-                          rollingIntervals.push(intervalId);
+                            let currentIndex = 0;
+                            const intervalId = setInterval(() => {
+                                const currentItem = items[currentIndex];
+                                img.src = currentItem.image;
+                                img.alt = currentItem.name;
+                                description.textContent = currentItem.name;
+                                currentIndex = (currentIndex + 1) % items.length;
+                            }, 100);
 
-                          setTimeout(() => {
-                              clearInterval(intervalId);
-                              const finalItem = items[randomItemIndex];
-                              img.src = finalItem.image;
-                              img.alt = finalItem.name;
-                              description.textContent = finalItem.name;
+                            rollingIntervals.push(intervalId);
 
-                              selectedItems.push({
-                                  name: finalItem.name,
-                                  image: finalItem.image,
-                              });
-                              if (selectedItems.length === selectedTypes.length) {
-                                  document.getElementById("eat-button").style.display = "block";
-                              }
-                          }, 3000); 
-                      }, startDelay); // 延遲
+                            setTimeout(() => {
+                                clearInterval(intervalId);
+                                const finalItem = items[randomItemIndex];
+                                img.src = finalItem.image;
+                                img.alt = finalItem.name;
+                                description.textContent = finalItem.name;
 
-                      startDelay += 1000; // 1 秒
-                  });
+                                selectedItems.push({
+                                    name: finalItem.name,
+                                    image: finalItem.image,
+                                    calories: finalItem.calories,
+                                    carbs: finalItem.carbs
+                                });
 
-                  setTimeout(() => {
-                      randomButton.disabled = false;
-                      }, 3000 + (selectedTypes.length - 1) * 1000); 
-                  })
-                  .catch((error) => {
+                                totalCalories += finalItem.calories;
+                                totalCarbs += finalItem.carbs;
+
+                                img.onload = () => {
+                                    const nutritionCard = document.createElement("div");
+                                    nutritionCard.className = "nutrition-card";
+
+                                    const title = document.createElement("h3");
+                                    title.textContent = "營養資訊";
+                                    nutritionCard.appendChild(title);
+
+                                    const list = document.createElement("ul");
+                                    list.innerHTML = `
+                                        <li>熱量: ${finalItem.calories} 大卡</li>
+                                        <li>蛋白質: ${finalItem.protein} 克</li>
+                                        <li>碳水: ${finalItem.carbs} 克</li>
+                                    `;
+                                    nutritionCard.appendChild(list);
+
+                                    itemDiv.appendChild(nutritionCard);
+                                };
+                            }, 3000);
+                        }, startDelay); // 延遲
+
+                        startDelay += 1000; // 1 秒
+                    });
+
+                    setTimeout(() => {
+                        randomButton.disabled = false;
+                        if (totalCalories > 700) {
+                            alert("警告: 熱量超過 700 大卡，請注意飲食平衡！");
+                        }
+                        if (totalCarbs > 90) {
+                            alert("警告: 碳水化合物含量超過 90 克，請注意飲食平衡！");
+                        }
+
+                        document.getElementById("eat-button").style.display = "block";
+                    }, 3600 + (selectedTypes.length - 1) * 1000);
+                })
+                .catch((error) => {
                     console.error("Error loading JSON:", error);
-                    randomButton.disabled = false; 
-                  });
-      }
+                    randomButton.disabled = false;
+                });
+        }
     
       function SaveToHistory() {
         const history = JSON.parse(localStorage.getItem("history")) || [];

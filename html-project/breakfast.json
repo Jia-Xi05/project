@@ -1,36 +1,196 @@
 {
     "main": [
-        { "name": "漢堡", "image": "https://www.moomooburger.shop/images/gallery/1.jpg" },
-        { "name": "三明治", "image": "https://g.udn.com.tw/upfiles/B_RT/rtgpac2013/PSN_PHOTO/366/f_10624366_1.gif" },
-        { "name": "鬆餅", "image": "https://1.bp.blogspot.com/-w2MS4vfjpHw/WmSwQBdVBhI/AAAAAAABi4c/B2ChoJ5fxYQbzhiZQTbUO4Ek7jF1TP37ACLcBGAs/s1600/604.jpg" },
-        { "name": "蛋餅", "image": "https://th.bing.com/th/id/R.4a352e15674fe3d308b774645b486277?rik=Nq%2bhIl2cnxnbPg&riu=http%3a%2f%2fspicyworld.in%2frecipeimages%2fpancake-7.jpg&ehk=pVshLinO2%2fAhuoqtshNtLIGu4KVtCgb0oXmmPchYF1c%3d&risl=&pid=ImgRaw&r=0" },
-        { "name": "鐵板麵", "image": "https://th.bing.com/th/id/OIP.koHltFNurdXeauvJ5qYQ0wHaFj?rs=1&pid=ImgDetMain" },
-        { "name": "巧克力厚片", "image": "https://tb-static.uber.com/prod/image-proc/processed_images/6e0b3e0fba8e24719e931558efc1445e/4218ca1d09174218364162cd0b1a8cc1.jpeg" },
-        { "name": "小籠包", "image": "https://cc.tvbs.com.tw/img/program/upload/2018/10/12/20181012160948-f88b998a.jpg" },
-        { "name": "蔥抓餅", "image": "https://th.bing.com/th/id/R.48ee2be76d2be4a1686048abe732e9b2?rik=qWgzeSbUo7KvNg&riu=http%3a%2f%2fwww.smile.21tw.net%2fimage%2fdata%2fpro_p04.jpg&ehk=YNzjPWHynrumC%2bjEMolSkgsrewvNBTPgGTt%2bKI3BYPw%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" },
-        { "name": "沙拉", "image": "https://th.bing.com/th/id/R.c4aebaecb87ee253ac9916bbe06bd8b2?rik=9S%2fSpZgxnXqxjA&riu=http%3a%2f%2fpic4.nipic.com%2f20090730%2f939528_152805005_2.jpg&ehk=TPD2lKRLSc0J0hOZ6gx4qzvi4Fa0qFmy7zZOfoH2Yqc%3d&risl=&pid=ImgRaw&r=0" },
-        { "name": "巧克力吐司", "image": "https://th.bing.com/th/id/R.cc3dba99cadda44b607540ea61bcd9e6?rik=v3Y7u9BayQBMLg&pid=ImgRaw&r=0" }
-        
+        { 
+            "name": "漢堡", 
+            "image": "https://www.moomooburger.shop/images/gallery/1.jpg",
+            "calories":536,
+            "protein":23,
+            "carbs": 49 
+        },
+        { 
+            "name": "三明治", 
+            "image": "https://g.udn.com.tw/upfiles/B_RT/rtgpac2013/PSN_PHOTO/366/f_10624366_1.gif",
+            "calories":274,
+            "protein":10.9,
+            "carbs": 28.2 
+        },
+        { 
+            "name": "鬆餅", 
+            "image": "https://1.bp.blogspot.com/-w2MS4vfjpHw/WmSwQBdVBhI/AAAAAAABi4c/B2ChoJ5fxYQbzhiZQTbUO4Ek7jF1TP37ACLcBGAs/s1600/604.jpg","calories":257,
+            "protein":3.2,
+            "carbs": 55.1  
+        },
+        { 
+            "name": "蛋餅", 
+            "image": "https://th.bing.com/th/id/R.4a352e15674fe3d308b774645b486277?rik=Nq%2bhIl2cnxnbPg&riu=http%3a%2f%2fspicyworld.in%2frecipeimages%2fpancake-7.jpg&ehk=pVshLinO2%2fAhuoqtshNtLIGu4KVtCgb0oXmmPchYF1c%3d&risl=&pid=ImgRaw&r=0",
+            "calories":300,
+            "protein":5.7,
+            "carbs": 43.7  
+        },
+        { 
+            "name": "鐵板麵", 
+            "image": "https://th.bing.com/th/id/OIP.koHltFNurdXeauvJ5qYQ0wHaFj?rs=1&pid=ImgDetMain",
+            "calories":460,
+            "protein":10,
+            "carbs": 60  
+        },
+        { 
+            "name": "巧克力厚片", 
+            "image": "https://tb-static.uber.com/prod/image-proc/processed_images/6e0b3e0fba8e24719e931558efc1445e/4218ca1d09174218364162cd0b1a8cc1.jpeg",
+            "calories":319,
+            "protein":9.2,
+            "carbs": 47.7  
+        },
+        { 
+            "name": "小籠包", 
+            "image": "https://cc.tvbs.com.tw/img/program/upload/2018/10/12/20181012160948-f88b998a.jpg",
+            "calories":241,
+            "protein":9.6,
+            "carbs": 159  
+        },
+        { 
+            "name": "蔥抓餅", 
+            "image": "https://th.bing.com/th/id/R.48ee2be76d2be4a1686048abe732e9b2?rik=qWgzeSbUo7KvNg&riu=http%3a%2f%2fwww.smile.21tw.net%2fimage%2fdata%2fpro_p04.jpg&ehk=YNzjPWHynrumC%2bjEMolSkgsrewvNBTPgGTt%2bKI3BYPw%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1","calories":410,
+            "protein":8,
+            "carbs": 36  
+        },
+        { 
+            "name": "沙拉", 
+            "image": "https://th.bing.com/th/id/R.c4aebaecb87ee253ac9916bbe06bd8b2?rik=9S%2fSpZgxnXqxjA&riu=http%3a%2f%2fpic4.nipic.    com%2f20090730%2f939528_152805005_2.jpg&ehk=TPD2lKRLSc0J0hOZ6gx4qzvi4Fa0qFmy7zZOfoH2Yqc%3d&risl=&pid=ImgRaw&r=0",
+            "calories":19.71,
+            "protein":0.7,
+            "carbs": 3.9  
+        },
+        { 
+            "name": "巧克力吐司", 
+            "image": "https://th.bing.com/th/id/R.cc3dba99cadda44b607540ea61bcd9e6?rik=v3Y7u9BayQBMLg&pid=ImgRaw&r=0",
+            "calories":319,
+            "protein":9.2,
+            "carbs": 47.7  
+        }
     ],
     "snack": [
-        { "name": "薯條", "image": "https://www.gqfood.com.tw/archive/image/product1/images/38super_05.jpg" },
-        { "name": "雞塊", "image": "https://th.bing.com/th/id/R.860531dade23276b47062591119b8bca?rik=duy%2fZqufMLIqKA&pid=ImgRaw&r=0" },
-        { "name": "薯餅", "image": "https://estarfood.com/wp-content/uploads/2021/05/E21-1-1030x687.jpg" },
-        { "name": "蘿蔔糕", "image": "https://th.bing.com/th/id/OIP.nZ_jXW8ZCivNr1Orc5JpyQHaFj?rs=1&pid=ImgDetMain" },
-        { "name": "煎餃", "image": "https://tokyo-kitchen.icook.network/uploads/recipe/cover/36267/large_b27e7debfa612290.jpg" },
-        { "name": "檸檬雞柳條", "image": "https://www.gqfood.com.tw/archive/image/product1/images/rdsnglt_03.jpg" },
-        { "name": "熱狗","image": "https://th.bing.com/th/id/OIP.J04eVd7x_4Z0l3nDmr3smAHaHa?rs=1&pid=ImgDetMain"}
-    ],
-    "drink": [
-        { "name": "牛奶", "image": "https://img.alicdn.com/i3/2209434459096/O1CN0157WF9M2H41FrjZmrX_!!2209434459096.jpg" },
-        { "name": "巧克力牛奶", "image": "https://th.bing.com/th/id/OIP.xb7krEcvp-MHaRHmln-42wHaEw?rs=1&pid=ImgDetMain" },
-        { "name": "豆漿", "image": "https://www.healingdaily.com.tw/media/article/00/02/256_e446a6586dbf.jpeg" },
-        { "name": "燕麥奶", "image": "https://th.bing.com/th/id/OIP.pDgUlMYGhR_rzshfs-J_BQHaE8?rs=1&pid=ImgDetMain" },
-        { "name": "綠茶", "image": "https://beauty-upgrade.tw/wp-content/uploads/2019/04/shutterstock_265400270.jpg" },
-        { "name": "紅茶", "image": "https://conekuriya.com/files/uploads/teacup.jpg" },
-        { "name": "咖啡", "image": "https://th.bing.com/th/id/OIP.woQtppOFlROg9LYaKDOLywHaFA?rs=1&pid=ImgDetMain" },
-        { "name": "紅茶豆漿", "image": "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/0B058CD5-4EC3-4E80-BB04-4344A1DFD34A/Derivates/977c1c6d-4335-44ab-a6ea-9de09c07953a.jpg" },
-        { "name": "咖啡牛奶", "image": "https://img95.699pic.com/photo/60024/4469.jpg_wh860.jpg" },
-        { "name": "果汁", "image": "https://th.bing.com/th/id/R.5118d49d5a83f67a77ac34cfafcac4d0?rik=OztNj2NA1U6YMg&riu=http%3a%2f%2fpic15.nipic.com%2f20110617%2f7552329_000130532201_2.jpg&ehk=KYZALfWWfW6Bmulb%2fl%2fqvDFAPBgVpMn6sUb2VTYZxHw%3d&risl=&pid=ImgRaw&r=0" }
-    ]
+    {
+        "name": "薯條",
+        "image": "https://www.gqfood.com.tw/archive/image/product1/images/38super_05.jpg",
+        "calories": 312,
+        "protein": 3.4,
+        "carbs": 41.4
+    },
+    {
+        "name": "雞塊",
+        "image": "https://th.bing.com/th/id/R.860531dade23276b47062591119b8bca?rik=duy%2fZqufMLIqKA&pid=ImgRaw&r=0",
+        "calories": 297,
+        "protein": 15.3,
+        "carbs": 14.9
+    },
+    {
+        "name": "薯餅",
+        "image": "https://estarfood.com/wp-content/uploads/2021/05/E21-1-1030x687.jpg",
+        "calories": 143,
+        "protein": 2,
+        "carbs": 15
+    },
+    {
+        "name": "蘿蔔糕",
+        "image": "https://th.bing.com/th/id/OIP.nZ_jXW8ZCivNr1Orc5JpyQHaFj?rs=1&pid=ImgDetMain",
+        "calories": 150,
+        "protein": 2,
+        "carbs": 30
+    },
+    {
+        "name": "煎餃",
+        "image": "https://tokyo-kitchen.icook.network/uploads/recipe/cover/36267/large_b27e7debfa612290.jpg",
+        "calories": 65,
+        "protein": 2,
+        "carbs": 5
+    },
+    {
+        "name": "檸檬雞柳條",
+        "image": "https://www.gqfood.com.tw/archive/image/product1/images/rdsnglt_03.jpg",
+        "calories": 250,
+        "protein": 20,
+        "carbs": 15
+    },
+    {
+        "name": "熱狗",
+        "image": "https://th.bing.com/th/id/OIP.J04eVd7x_4Z0l3nDmr3smAHaHa?rs=1&pid=ImgDetMain",
+        "calories": 150,
+        "protein": 5,
+        "carbs": 2
+    }
+],
+"drink": [
+    {
+        "name": "牛奶",
+        "image": "https://img.alicdn.com/i3/2209434459096/O1CN0157WF9M2H41FrjZmrX_!!2209434459096.jpg",
+        "calories": 150,
+        "protein": 8,
+        "carbs": 12
+    },
+    {
+        "name": "巧克力牛奶",
+        "image": "https://th.bing.com/th/id/OIP.xb7krEcvp-MHaRHmln-42wHaEw?rs=1&pid=ImgDetMain",
+        "calories": 208,
+        "protein": 8,
+        "carbs": 26
+    },
+    {
+        "name": "豆漿",
+        "image": "https://www.healingdaily.com.tw/media/article/00/02/256_e446a6586dbf.jpeg",
+        "calories": 131,
+        "protein": 7,
+        "carbs": 15
+    },
+    {
+        "name": "燕麥奶",
+        "image": "https://th.bing.com/th/id/OIP.pDgUlMYGhR_rzshfs-J_BQHaE8?rs=1&pid=ImgDetMain",
+        "calories": 120,
+        "protein": 3,
+        "carbs": 16
+    },
+    {
+        "name": "綠茶",
+        "image": "https://beauty-upgrade.tw/wp-content/uploads/2019/04/shutterstock_265400270.jpg",
+        "calories": 0,
+        "protein": 0,
+        "carbs": 0
+    },
+    {
+        "name": "紅茶",
+        "image": "https://conekuriya.com/files/uploads/teacup.jpg",
+        "calories": 0,
+        "protein": 0,
+        "carbs": 0
+    },
+    {
+        "name": "咖啡",
+        "image": "https://th.bing.com/th/id/OIP.woQtppOFlROg9LYaKDOLywHaFA?rs=1&pid=ImgDetMain",
+        "calories": 2,
+        "protein": 0.3,
+        "carbs": 0
+    },
+    {
+        "name": "紅茶豆漿",
+        "image": "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/0B058CD5-4EC3-4E80-BB04-4344A1DFD34A/Derivates/977c1c6d-4335-44ab-a6ea-9de09c07953a.jpg",
+        "calories": 150,
+        "protein": 7,
+        "carbs": 15
+    },
+    {
+        "name": "咖啡牛奶",
+        "image": "https://img95.699pic.com/photo/60024/4469.jpg_wh860.jpg",
+        "calories": 180,
+        "protein": 6,
+        "carbs": 24
+    },
+    {
+        "name": "果汁",
+        "image": "https://th.bing.com/th/id/R.5118d49d5a83f67a77ac34cfafcac4d0?rik=OztNj2NA1U6YMg&riu=http%3a%2f%2fpic15.nipic.com%2f20110617%2f7552329_000130532201_2.jpg&ehk=KYZALfWWfW6Bmulb%2fl%2fqvDFAPBgVpMn6sUb2VTYZxHw%3d&risl=&pid=ImgRaw&r=0",
+        "calories": 112,
+        "protein": 1,
+        "carbs": 26
+    }
+]
+
 }
