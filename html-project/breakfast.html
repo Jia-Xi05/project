@@ -67,84 +67,89 @@
           selectedItems = [];
           rollingIntervals.forEach(clearInterval); // 清除所有滾動動畫
           rollingIntervals = [];
-      
-          document.getElementById("eat-button").style.display = "none"; // 初始隱藏
-      
+
+          const randomButton = document.querySelector('button[onclick="RandomChoices()"]');
+          randomButton.disabled = true; // 禁用按鈕
+
+          document.getElementById("eat-button").style.display = "none"; //初始隱藏
+
           const selectedTypes = [];
           if (document.getElementById("main").checked) selectedTypes.push("main");
           if (document.getElementById("snack").checked) selectedTypes.push("snack");
           if (document.getElementById("drink").checked) selectedTypes.push("drink");
-      
+
           if (selectedTypes.length === 0) {
-            alert("不吃進來幹嘛！");
-            return;
+              alert("不吃進來幹嘛！");
+              randomButton.disabled = false; 
+              return;
           }
-      
+
           fetch("./breakfast.json")
-            .then((response) => response.json())
-            .then((data) => {
-              let startDelay = 0; // 開始滾動的延遲時間
-      
-              selectedTypes.forEach((type, index) => {
-                setTimeout(() => {
-                  const items = data[type];
-                  const randomItemIndex = Math.floor(Math.random() * items.length);
-      
-                  const itemDiv = document.createElement("div");
-                  itemDiv.className = "placeholder";
-                  itemDiv.style.textAlign = "center";
-      
-                  // 建立圖片元素
-                  const img = document.createElement("img");
-                  img.style.width = "150px";
-                  img.style.height = "150px";
-                  itemDiv.appendChild(img);
-      
-                  // 建立文字描述
-                  const description = document.createElement("p");
-                  itemDiv.appendChild(description);
-      
-                  placeholders.appendChild(itemDiv);
-      
-                  // 開始滾動動畫
-                  let currentIndex = 0;
-                  const intervalId = setInterval(() => {
-                    const currentItem = items[currentIndex];
-                    img.src = currentItem.image;
-                    img.alt = currentItem.name;
-                    description.textContent = currentItem.name;
-                    currentIndex = (currentIndex + 1) % items.length;
-                  }, 100); // 每 100ms 更新一次
-      
-                  rollingIntervals.push(intervalId);
-      
-                  // 在 3 秒後停止動畫並顯示最終結果
+              .then((response) => response.json())
+              .then((data) => {
+                  let startDelay = 0;
+
+                  selectedTypes.forEach((type, index) => {
+                      setTimeout(() => {
+                          const items = data[type];
+                          const randomItemIndex = Math.floor(Math.random() * items.length);
+
+                          const itemDiv = document.createElement("div");
+                          itemDiv.className = "placeholder";
+                          itemDiv.style.textAlign = "center";
+
+                        
+                          const img = document.createElement("img");
+                          img.style.width = "150px";
+                          img.style.height = "150px";
+                          itemDiv.appendChild(img);
+
+                          const description = document.createElement("p");
+                          itemDiv.appendChild(description);
+
+                          placeholders.appendChild(itemDiv);
+
+                          let currentIndex = 0;
+                          const intervalId = setInterval(() => {
+                              const currentItem = items[currentIndex];
+                              img.src = currentItem.image;
+                              img.alt = currentItem.name;
+                              description.textContent = currentItem.name;
+                              currentIndex = (currentIndex + 1) % items.length;
+                          }, 100); 
+
+                          rollingIntervals.push(intervalId);
+
+                          setTimeout(() => {
+                              clearInterval(intervalId);
+                              const finalItem = items[randomItemIndex];
+                              img.src = finalItem.image;
+                              img.alt = finalItem.name;
+                              description.textContent = finalItem.name;
+
+                              selectedItems.push({
+                                  name: finalItem.name,
+                                  image: finalItem.image,
+                              });
+                              if (selectedItems.length === selectedTypes.length) {
+                                  document.getElementById("eat-button").style.display = "block";
+                              }
+                          }, 3000); 
+                      }, startDelay); // 延遲
+
+                      startDelay += 1000; // 1 秒
+                  });
+
                   setTimeout(() => {
-                    clearInterval(intervalId);
-                    const finalItem = items[randomItemIndex];
-                    img.src = finalItem.image;
-                    img.alt = finalItem.name;
-                    description.textContent = finalItem.name;
-      
-                    selectedItems.push({
-                      name: finalItem.name,
-                      image: finalItem.image,
-                    });
-      
-                    // 如果所有類別都已停止，顯示「吃」按鈕
-                    if (selectedItems.length === selectedTypes.length) {
-                      document.getElementById("eat-button").style.display = "block";
-                    }
-                  }, 3000); // 每個類別動畫停在 3 秒
-                }, startDelay); // 延遲開始
-      
-                startDelay += 1000; // 每次延遲 1 秒
-              });
-      
-          
-            })
-            .catch((error) => console.error("Error loading JSON:", error));
+                      randomButton.disabled = false;
+                      }, 3000 + (selectedTypes.length - 1) * 1000); 
+                  })
+                  .catch((error) => {
+                    console.error("Error loading JSON:", error);
+                    randomButton.disabled = false; 
+                  });
         }
+
       
         function SaveToHistory() {
           const history = JSON.parse(localStorage.getItem("history")) || [];
