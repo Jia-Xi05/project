@@ -1,12 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunch</title>
-    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>午餐選擇</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+          /* 動態背景 */
+          body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(-45deg, #e8c2ae, #f3d8c7, #fef7f0, #f4dece);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            font-family: Arial, sans-serif;
+          }
+    
+          @keyframes gradientBG {
+            0% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+            100% {
+              background-position: 0% 50%;
+            }
+          }
+    
+          /*食物圖標 */
+          .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+          }
+    
+          .floating-icon {
+          position: absolute;
+          font-size: 4rem;
+          animation: float 8s linear infinite;
+          top: 80%; /* 改變位置，使其初始位置位於較低處 */
+        }
 
-</head>
+        @keyframes float {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-30vh); /* 改變動畫的結束點，讓圖標從視窗中消失 */
+          }
+          100% {
+            transform: translateY(0); /* 重新回到原位置，形成循環 */
+          }
+        }
+    
+    
+          .placeholder {
+            display: inline-block;
+            margin: 10px;
+          }
+    
+          .stage {
+            text-align: center;
+          }
+    
+          button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f6a46a;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+        
+          button:hover {
+            background-color: #b3764a;
+          }
+        </style>
+    </head>
 <body>
     <div id="progress-bar-container">
       <div id="progress-bar"></div>
@@ -20,6 +98,7 @@
             <a href="./breakfast.html">Breakfast</a>
             <a href="./lunch.html">Lunch</a>
             <a href="./dinner.html">Dinner</a>
+            <a href="./contact.html">聯絡我們</a>
         </div>
     </div>
 
@@ -46,6 +125,15 @@
 
     <div id="page-loader" class="loader" style="display: none;"></div>
     <div id="page-loader-overlay" style="display: none;"></div>
+
+    <!-- 漂浮圖標 -->
+    <div class="floating-icons">
+        <span class="floating-icon" style="left: 10%; animation-delay: 0s;">🍕</span>
+        <span class="floating-icon" style="left: 30%; animation-delay: 2s;">🍣</span>
+        <span class="floating-icon" style="left: 50%; animation-delay: 4s;">🍩</span>
+        <span class="floating-icon" style="left: 70%; animation-delay: 1s;">🥗</span>
+        <span class="floating-icon" style="left: 90%; animation-delay: 3s;">🍔</span>
+    </div>
 
     <script>
 

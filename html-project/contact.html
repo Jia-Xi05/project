@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>聯絡我們</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(-45deg, #e8c2ae, #f3d8c7, #fef7f0, #f4dece);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        font-family: Arial, sans-serif;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .contact-info {
+        margin-top: 30px;
+      }
+
+      .contact-info h2 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      .contact-info p {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .contact-info a {
+        color: #ff7043;
+        text-decoration: none;
+      }
+
+      .contact-info a:hover {
+        text-decoration: none;
+      }
+
+      .about-us {
+        margin-top: 40px;
+        text-align: left;
+      }
+
+      .about-us h2 {
+        color: #333;
+      }
+
+      .about-us p {
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: left;
+      }
+
+      .class-info {
+        margin-top: 30px;
+        font-size: 16px;
+      }
+
+      .class-info p {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav-container">
+      <button class="nav-button" onclick="NavMenu()">☰</button>
+      <div id="nav-menu" class="nav-menu">
+        <a href="./index.html">回主頁</a>
+        <a href="./history.html">歷史紀錄</a>
+        <a href="./breakfast.html">Breakfast</a>
+        <a href="./lunch.html">Lunch</a>
+        <a href="./dinner.html">Dinner</a>
+        <a href="./contact.html">聯絡我們</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>聯絡我們</h1>
+
+      <div class="contact-info">
+        <h2>聯絡資訊</h2>
+        <p>歡迎提供我們改善建議 以下是您可以聯絡我們的方式：</p>
+        <p><strong>洪子懿：</strong> <a href="mailto:01257114@email.ntou.edu.tw">01257114@email.ntou.edu.tw</a></p>
+        <p><strong>楊佳熹：</strong> <a href="mailto:01257102@email.ntou.edu.tw">01257102@email.ntou.edu.tw</a></p>
+      </div>
+
+      <div class="about-us">
+        <h2>關於我們</h2>
+        <p>隨機食物選擇器的創作靈感來自現代人生活忙碌、選擇餐點時經常猶豫不決的困擾。為了解決這些「選擇困難症」，我們設計了一個隨機食物選擇器，提供使用者簡單快速的選擇方案，減少不必要的時間浪費。我們也在使用者互動的介面加上些許動畫，讓畫面看起來不太死板，增加使用者嘗試的意願。</p>
+        <p>我們的開發過程從分析用戶需求開始，了解他們在選擇食物時的痛點，並不斷優化功能，最終完成了這個隨機食物選擇器。希望能夠幫助大家在繁忙的生活中，減少決策的時間，並增加生活的樂趣。</p>
+      </div>
+
+      <div class="class-info">
+        <h2>班級與組別</h2>
+        <p><strong>班級：</strong> 資訊工程學系 2年級 B班</p>
+        <p><strong>組別：</strong> 第35組</p>
+      </div>
+    </div>
+
+    <script>
+      function NavMenu() {
+        const navMenu = document.getElementById("nav-menu");
+        navMenu.style.display =
+          navMenu.style.display === "none" || navMenu.style.display === ""
+            ? "flex"
+            : "none";
+      }
+    </script>
+  </body>
+</html>

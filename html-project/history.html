@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>歷史紀錄</title>
     <link rel="stylesheet" href="style.css">
-
     <style>
+        /* 動態背景 */
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(-45deg, #3981ee, #58a6f5, #44dce7, #07c8b5);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            font-family: Arial, sans-serif;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         h1 {
             margin-top: 10px;
             text-align: center;
@@ -15,12 +36,13 @@
             margin: 20px auto;
             border-collapse: collapse;
             width: 90%;
-            opacity: 0;
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明背景 */
             transition: opacity 1s ease-in-out;
         }
         th, td {
             border: 1px solid #ccc;
             padding: 8px;
+            color: #333; /* 固定字體顏色 */
         }
         th {
             background-color: #f4f4f4;
@@ -28,12 +50,13 @@
         td {
             text-align: center;
         }
+
         /* 清空紀錄按鈕 */
         .clear-button {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
-            background-color: #f44336;
+            background-color: #ff7043;
             color: white;
             border: none;
             border-radius: 5px;
@@ -43,7 +66,7 @@
         }
 
         .clear-button:hover {
-            background-color: #d32f2f;
+            background-color: #ff5722;
             transform: scale(1.1);
         }
 
@@ -64,29 +87,9 @@
         tr:hover {
             background-color: #f1f1f1;
         }
-
-        /* 引導式動畫 */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
     </style>
 </head>
 <body>
-    <div id="progress-bar-container">
-        <div id="progress-bar"></div>
-    </div>
-    
     <div class="nav-container">
         <button class="nav-button" onclick="NavMenu()">☰</button>
         <div id="nav-menu" class="nav-menu">
@@ -95,6 +98,7 @@
             <a href="./breakfast.html">Breakfast</a>
             <a href="./lunch.html">Lunch</a>
             <a href="./dinner.html">Dinner</a>
+            <a href="./contact.html">聯絡我們</a>
         </div>
     </div>
 
@@ -116,10 +120,7 @@
         </tbody>
     </table>
 
-    <div id="page-loader" class="loader" style="display: none;"></div>
-    <div id="page-loader-overlay" style="display: none;"></div>
     <script>
-
         function NavMenu() {
             const navMenu = document.getElementById("nav-menu");
             navMenu.style.display = navMenu.style.display === "flex" ? "none" : "flex";
@@ -186,7 +187,7 @@
 
         // 開啟 Google Maps 並顯示使用者位置周圍的餐點
         function openMapWithLocation(itemName) {
-            // 確認使用者是否允許定位
+        // 確認使用者是否允許定位
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     const userLatitude = position.coords.latitude;
@@ -203,6 +204,7 @@
             }
         }
 
+
         // 清空歷史紀錄
         function clearHistory() {
             if (confirm("真的嗎？")) {
@@ -214,38 +216,8 @@
                 }
             }
         }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-        initializeNavLinks();
-        });
 
         document.addEventListener("DOMContentLoaded", loadHistory);
-        function initializeNavLinks() {
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const targetUrl = link.href;
-                showLoader(() => {
-                    window.location.href = targetUrl;
-                });
-            });
-        });
-      }
-
-      function showLoader(callback) {
-        const loader = document.getElementById('page-loader');
-        const overlay = document.createElement('div');
-        overlay.id = 'page-loader-overlay';
-        document.body.appendChild(overlay);
-
-        loader.style.display = 'block';
-        overlay.style.display = 'block';
-
-        setTimeout(() => {
-            callback();
-          }, 1500);
-      }
     </script>
 </body>
 </html>
